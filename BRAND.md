@@ -1,0 +1,121 @@
+# LCSC brand
+
+The shared look, feel and voice for every LCSC app. `brand.css` holds the styles;
+this file holds the rules that cannot be code. Both are read by Claude when it works
+on an app that is connected to this package.
+
+An app's own `CLAUDE.md` may override any rule here under a heading **Brand exceptions**.
+Those exceptions win, for that app only. Everything not mentioned there follows this file.
+
+## Feel
+
+Warm, quiet, uncluttered. A paper background, ivory neutrals and a single clay accent.
+A screen should read like a well-set page, not a dashboard. When in doubt, remove something.
+
+## Color
+
+- Neutrals are the ivory scale, exposed as `zinc-50` to `zinc-950`. The page background is `paper`; surfaces such as cards, inputs and menus are white.
+- Clay is the one accent. It is used for exactly two things: the single primary action on a screen and the active navigation item. Never for decoration, headings, links or status.
+- Status colors: amber means needs attention, red means a problem or a destructive action, green means done or good, blue is informational and rare. They appear on badges, notices, stat values and small controls, never on large areas.
+- Text is `zinc-900`. Secondary text is `zinc-500` or `zinc-600`. Field labels are `zinc-600`.
+
+## Type
+
+- Body text is Inter, through `--font-body`. Display text is Source Serif 4, through `--font-display`. The app loads both; see **Fonts** below.
+- Serif is for `h1` and `h2` only, weight 500, slightly tightened. Everything else is sans.
+- Sizes: page title `text-3xl`, section title `text-lg`, body `text-sm`, helper text `text-xs`, table headers 11px uppercase with wide tracking.
+
+## Shape
+
+- Buttons and badges are pills (`rounded-full`). Cards, menus and notices are `rounded-xl`; inputs are `rounded-lg`.
+- Borders are one pixel: `zinc-200` on cards and tables, `zinc-300` on controls.
+- Shadows only on floating menus, and faint.
+
+## Icons, not words
+
+- Simple, universally understood actions are shown as an icon, never as a word: edit (pencil), close or cancel (cross), delete (bin), add (plus), download, open in a new tab, back.
+- Every icon control carries an `aria-label` and a tooltip saying what it does. The icon is all that shows on screen; the words appear on hover, on focus and to screen readers.
+- Icons are 16px line icons with a 2px stroke, drawn in the current text color, inside a round `.iconbtn` in the quiet, danger or primary tone.
+- Words remain for actions that are not universal, such as "Approve run" or "Export grid". Even then they are short: a verb and a noun at most.
+
+## Instructions live in tooltips
+
+- A screen shows data and controls, not explanations. No instructional paragraphs. No helper sentences under fields or sections by default.
+- When something needs explaining, it goes in a tooltip: `data-tip` on the control itself, or a small info icon carrying `data-tip`. It appears only on hover, focus or tap.
+- Tooltip text is one short sentence, about twelve words or fewer, with no full stop. "Downloads the grid as the Powergrid file", not "Click this button in order to download the grid".
+- The only on-screen prose beyond labels: a one-line subtitle under a page title when the page's purpose is not obvious, and a notice when something has gone wrong.
+
+## Voice
+
+- Plain words, short sentences, present tense. Say what happens, not what the user should do.
+- When something is refused or blocked, say why in one line: "Fix the errors first".
+- Labels are nouns, buttons are verbs. Sentence case everywhere. No Title Case, no exclamation marks.
+- Use the words staff use, not the system's. Never "entity", "record", "payload", "instance".
+
+## Interaction
+
+- Everything clickable shows a hand cursor. `brand.css` does this.
+- Destructive actions confirm first, with one short line saying what will happen.
+- Hover feedback is a color change of about 120ms. No other motion, apart from a disclosure chevron rotating.
+- Detail hides behind a disclosure. A screen shows the one-line status, not the whole panel.
+
+## Components in brand.css
+
+| Class | Use |
+|---|---|
+| `.btn`, `.btn-primary`, `.btn-danger`, `.btn-quiet`, `.btn-sm` | Pill buttons. One `.btn-primary` per screen. |
+| `.iconbtn`, `.iconbtn-danger`, `.iconbtn-primary` | Round icon-only buttons. |
+| `.input`, `.label` | Form controls and their small labels. |
+| `.card` | A white, bordered, rounded surface. |
+| `.table` | Quiet data table with uppercase headers. |
+| `.badge` | Pill status marker; add a status color. |
+| `.menu`, `.menu-item` | Floating dropdown. |
+| `[data-tip]`, `data-tip-pos="top|bottom|left|right"` | Tooltip from an attribute, no library. |
+
+Layout patterns each app builds for itself, in the same spirit: a page header with the
+title, an optional one-line subtitle, a back link and the actions on the right; sections
+with a serif heading; notices in the four tones; stat cards; and disclosures, a quiet
+one-line status that expands.
+
+## Fonts
+
+`brand.css` expects two CSS variables, `--font-body` and `--font-display`. In a Next.js
+app, load them in the root layout:
+
+```tsx
+import { Inter, Source_Serif_4 } from "next/font/google";
+
+const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const display = Source_Serif_4({ subsets: ["latin"], variable: "--font-display", display: "swap", weight: ["400", "500", "600"] });
+
+<html lang="en" className={`h-full antialiased ${body.variable} ${display.variable}`}>
+  <body className="min-h-full flex flex-col bg-paper text-zinc-900">
+```
+
+## Overrides, per app
+
+Rules: in the app's `CLAUDE.md`, under `## Brand exceptions`, write the exception and the reason.
+
+```md
+## Brand exceptions
+- Tables use a second accent, blue-800, for the "selected" row because clay already marks the active tab.
+```
+
+Styles: redefine the token in the app's stylesheet after the brand import. The later value wins.
+
+```css
+@import "tailwindcss";
+@import "@lcsc/brand/brand.css";
+
+@theme {
+  --color-clay-500: #b85a3a; /* this app's accent is a shade darker */
+}
+```
+
+Keep exceptions rare. If the same exception appears in two apps, it is not an exception; move it into this file.
+
+## Updating the brand
+
+1. Edit `brand.css` or this file in the `lcsc-brand` repository and commit.
+2. Add a line to `CHANGELOG.md`.
+3. In each app, refresh the package (`npm update @lcsc/brand`). Claude does this when asked to "refresh the brand".

@@ -1,0 +1,14 @@
+{
+  "name": "@lcsc/brand",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The shared look, feel and voice for LCSC apps: brand.css for the styles, BRAND.md for the rules.",
+  "style": "brand.css",
+  "exports": {
+    "./brand.css": "./brand.css",
+    "./BRAND.md": "./BRAND.md",
+    "./package.json": "./package.json"
+  },
+  "files": ["brand.css", "BRAND.md", "README.md", "CHANGELOG.md"],
+  "repository": "github:aseidenfeldlcsc/lcsc-brand"
+}

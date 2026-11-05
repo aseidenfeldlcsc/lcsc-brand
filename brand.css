@@ -1,0 +1,217 @@
+/*
+ * LCSC brand: shared styles for every LCSC app.
+ *
+ * Import this after Tailwind in the app main stylesheet:
+ *   @import "tailwindcss";
+ *   @import "@lcsc/brand/brand.css";
+ *
+ * The app must define --font-body and --font-display (see BRAND.md, Fonts).
+ * To override a token in one app, redefine it in that app stylesheet after
+ * this import; the later definition wins.
+ */
+
+/*
+ * One theme for the whole app. The warm "ivory" neutrals replace Tailwind's zinc
+ * scale so every existing zinc-* class picks up the palette, and clay is the
+ * single accent, used for the primary action and the active nav item only.
+ */
+@theme {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-zinc-50: #f5f4ee;
+  --color-zinc-100: #ebe9e0;
+  --color-zinc-200: #dedbd0;
+  --color-zinc-300: #c8c5b8;
+  --color-zinc-400: #9f9d92;
+  --color-zinc-500: #76746b;
+  --color-zinc-600: #5e5d57;
+  --color-zinc-700: #45443f;
+  --color-zinc-800: #2e2d2a;
+  --color-zinc-900: #191917;
+  --color-zinc-950: #141413;
+
+  --color-paper: #faf9f5;
+
+  --color-clay-50: #fbf1ec;
+  --color-clay-100: #f5ddd2;
+  --color-clay-200: #ecbda8;
+  --color-clay-300: #e39b7d;
+  --color-clay-400: #d97757;
+  --color-clay-500: #cc6a48;
+  --color-clay-600: #b85a3a;
+  --color-clay-700: #944830;
+  --color-clay-800: #6e3624;
+  --color-clay-900: #4a2419;
+
+  --color-amber-50: #fdf6e7;
+  --color-amber-100: #f9e9c3;
+  --color-amber-300: #e9c46a;
+  --color-amber-500: #c99a2e;
+  --color-amber-700: #8a6414;
+  --color-amber-800: #6d4f10;
+  --color-amber-900: #4f3a0c;
+
+  --color-green-50: #eef5ec;
+  --color-green-100: #d9e9d3;
+  --color-green-200: #b9d4af;
+  --color-green-600: #3f7a3a;
+  --color-green-700: #35672f;
+  --color-green-800: #2a5226;
+  --color-green-900: #1f3d1c;
+
+  --color-red-50: #fbeeec;
+  --color-red-100: #f5d6d1;
+  --color-red-200: #ebb3aa;
+  --color-red-600: #b2432f;
+  --color-red-700: #973827;
+  --color-red-800: #782c1f;
+  --color-red-900: #552016;
+
+  --color-blue-50: #eef1f4;
+  --color-blue-100: #dbe2e9;
+  --color-blue-200: #bcc9d6;
+  --color-blue-800: #324a62;
+  --color-blue-900: #263849;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-zinc-900);
+  }
+  h1,
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--color-clay-100);
+  }
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-full border border-zinc-300 bg-white px-3.5 py-1.5 text-sm font-medium text-zinc-800 transition-colors hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-clay-500 bg-clay-500 text-white hover:border-clay-600 hover:bg-clay-600;
+  }
+  .btn-danger {
+    @apply border-red-700 bg-red-700 text-white hover:bg-red-600;
+  }
+  .btn-sm {
+    @apply px-2.5 py-1 text-xs;
+  }
+  .btn-quiet {
+    @apply border-transparent bg-transparent text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900;
+  }
+  .iconbtn {
+    @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .iconbtn-danger {
+    @apply hover:bg-red-50 hover:text-red-700;
+  }
+  .iconbtn-primary {
+    @apply bg-clay-500 text-white hover:bg-clay-600 hover:text-white;
+  }
+  .input {
+    @apply w-full rounded-lg border border-zinc-300 bg-white px-2.5 py-1.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-900/10;
+  }
+  .label {
+    @apply mb-1 block text-xs font-medium text-zinc-600;
+  }
+  .card {
+    @apply rounded-xl border border-zinc-200 bg-white p-4;
+  }
+  .table {
+    @apply w-full text-sm;
+  }
+  .table th {
+    @apply border-b border-zinc-200 px-3 py-2 text-left text-[11px] font-medium uppercase tracking-wider text-zinc-500;
+  }
+  .table td {
+    @apply border-b border-zinc-100 px-3 py-2 align-top;
+  }
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .badge {
+    @apply inline-block whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+  .menu {
+    @apply absolute right-0 z-30 mt-1 min-w-48 overflow-hidden rounded-xl border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-900/5;
+  }
+  .menu-item {
+    @apply block w-full px-3.5 py-2 text-left text-sm text-zinc-800 hover:bg-zinc-50 disabled:opacity-50;
+  }
+}
+
+/* Everything clickable shows a hand, not an arrow. */
+button:not(:disabled),
+[role="button"],
+summary,
+a[href],
+select:not(:disabled),
+input[type="file"]:not(:disabled),
+input[type="checkbox"]:not(:disabled) {
+  cursor: pointer;
+}
+
+/*
+ * Hover bubble. Put the words in data-tip; data-tip-pos picks the side
+ * (top by default; right or left for buttons inside scrolling tables).
+ */
+[data-tip] {
+  position: relative;
+}
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 50;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background: var(--color-zinc-900);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+  left: 50%;
+  bottom: calc(100% + 0.4rem);
+  transform: translateX(-50%);
+}
+[data-tip][data-tip-pos="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + 0.4rem);
+}
+[data-tip][data-tip-pos="right"]::after {
+  left: calc(100% + 0.4rem);
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+[data-tip][data-tip-pos="left"]::after {
+  left: auto;
+  right: calc(100% + 0.4rem);
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+[data-tip]:hover::after,
+[data-tip]:focus-visible::after {
+  opacity: 1;
+}
+
