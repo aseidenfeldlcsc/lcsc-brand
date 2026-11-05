@@ -120,3 +120,4 @@ Keep exceptions rare. If the same exception appears in two apps, it is not an ex
 1. Edit `brand.css` or this file in the `lcsc-brand` repository and commit.
 2. Add a line to `CHANGELOG.md`.
 3. In each app, refresh the package (`npm update @lcsc/brand`). Claude does this when asked to "refresh the brand".
+4. If a dev server is running, stop it, delete the `.next/dev` folder, and start it again. Turbopack caches package files and will keep showing the old styles otherwise.
