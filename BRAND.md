@@ -34,7 +34,8 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 
 ## Icons, not words
 
-- Simple, universally understood actions are shown as an icon, never as a word: edit (pencil), close or cancel (cross), delete (bin), add (plus), download, open in a new tab, back.
+- Simple, universally understood actions are shown as an icon, never as a word: edit (pencil), close or cancel (cross), delete or remove (bin), add (plus), open or go to (arrow right), download (arrow into tray), open in a new tab, back (arrow left).
+- Test: if the word on a button is one of those verbs, it is an icon. A row's "Open" button is an arrow; a dialog's "Close" is a cross in its corner.
 - Every icon control carries an `aria-label` and a tooltip saying what it does. The icon is all that shows on screen; the words appear on hover, on focus and to screen readers.
 - Icons are 16px line icons with a 2px stroke, drawn in the current text color, inside a round `.iconbtn` in the quiet, danger or primary tone.
 - Words remain for actions that are not universal, such as "Approve request" or "Export table". Even then they are short: a verb and a noun at most.
@@ -57,6 +58,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 
 - Everything clickable shows a hand cursor. `brand.css` does this.
 - Destructive actions confirm first, with one short line saying what will happen.
+- Every button, link and icon control has a visible hover state, always. Outlined buttons darken their border and fill one step (white to `zinc-100`); primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
 - Hover feedback is a color change of about 120ms. No other motion, apart from a disclosure chevron rotating.
 - Detail hides behind a disclosure. A screen shows the one-line status, not the whole panel.
 

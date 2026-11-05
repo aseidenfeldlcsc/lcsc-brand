@@ -13,3 +13,9 @@
 ## 1.0.2 (2026-11-05)
 
 - Page background back to #faf9f5 after trying the darker ivory.
+
+## 1.1.0 (2026-11-05)
+
+- Every button now has a visible hover: outlined buttons darken their border and shift to zinc-100; menu items too.
+- Rule added: every clickable control has a visible hover state.
+- Icon list: open (arrow).
