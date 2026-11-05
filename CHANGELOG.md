@@ -4,3 +4,7 @@
 
 - First shared release.
 - Rules added: icons instead of words for simple actions; instructions live in tooltips, never on screen; per-app exceptions in the app's CLAUDE.md.
+
+## 1.0.1 (2026-11-05)
+
+- Page background (`paper`) warmed from #faf9f5 to #f7f5ef, closer to the sidebar off-white.
