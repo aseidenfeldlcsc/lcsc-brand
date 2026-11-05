@@ -36,13 +36,13 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 - Simple, universally understood actions are shown as an icon, never as a word: edit (pencil), close or cancel (cross), delete (bin), add (plus), download, open in a new tab, back.
 - Every icon control carries an `aria-label` and a tooltip saying what it does. The icon is all that shows on screen; the words appear on hover, on focus and to screen readers.
 - Icons are 16px line icons with a 2px stroke, drawn in the current text color, inside a round `.iconbtn` in the quiet, danger or primary tone.
-- Words remain for actions that are not universal, such as "Approve run" or "Export grid". Even then they are short: a verb and a noun at most.
+- Words remain for actions that are not universal, such as "Approve request" or "Export table". Even then they are short: a verb and a noun at most.
 
 ## Instructions live in tooltips
 
 - A screen shows data and controls, not explanations. No instructional paragraphs. No helper sentences under fields or sections by default.
 - When something needs explaining, it goes in a tooltip: `data-tip` on the control itself, or a small info icon carrying `data-tip`. It appears only on hover, focus or tap.
-- Tooltip text is one short sentence, about twelve words or fewer, with no full stop. "Downloads the grid as the Powergrid file", not "Click this button in order to download the grid".
+- Tooltip text is one short sentence, about twelve words or fewer, with no full stop. "Downloads the table as a spreadsheet", not "Click this button in order to download the table".
 - The only on-screen prose beyond labels: a one-line subtitle under a page title when the page's purpose is not obvious, and a notice when something has gone wrong.
 
 ## Voice
