@@ -14,6 +14,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 
 ## Color
 
+- The palette is Anthropic's, all the way: ivory for the page (`#f0eee6`), lighter ivories for panels and surfaces, slate `#141413` for the darkest text, and clay `#d97757` as the accent. When a new colour is needed, take it from Anthropic's brand palette before inventing one.
 - Neutrals are the ivory scale, exposed as `zinc-50` to `zinc-950`. The page background is `paper`; surfaces such as cards, inputs and menus are white.
 - Clay is the one accent. It is used for exactly two things: the single primary action on a screen and the active navigation item. Never for decoration, headings, links or status.
 - Status colors: amber means needs attention, red means a problem or a destructive action, green means done or good, blue is informational and rare. They appear on badges, notices, stat values and small controls, never on large areas.

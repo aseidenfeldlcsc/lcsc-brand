@@ -7,4 +7,5 @@
 
 ## 1.0.1 (2026-11-05)
 
-- Page background (`paper`) warmed from #faf9f5 to #f7f5ef, closer to the sidebar off-white.
+- Page background (`paper`) warmed from #faf9f5 to #f0eee6, Anthropic's ivory.
+- Rule added: the palette follows Anthropic's brand colours.
