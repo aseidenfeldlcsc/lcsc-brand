@@ -61,6 +61,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 - Every button, link and icon control has a visible hover state, always. Outlined buttons darken their border and fill one step (white to `zinc-100`); primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
 - Hover feedback is a color change of about 120ms. No other motion, apart from a disclosure chevron rotating.
 - Detail hides behind a disclosure. A screen shows the one-line status, not the whole panel.
+- One way to do a thing. If a row's name is already the link to its page, the row gets no second "open" control, not even an arrow. Icons in a row are for actions the name cannot carry: edit, delete, download.
 
 ## Components in brand.css
 

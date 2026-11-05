@@ -19,3 +19,7 @@
 - Every button now has a visible hover: outlined buttons darken their border and shift to zinc-100; menu items too.
 - Rule added: every clickable control has a visible hover state.
 - Icon list: open (arrow).
+
+## 1.1.1 (2026-11-05)
+
+- Rule added: one way to do a thing; a linked row name gets no extra open control.
