@@ -22,7 +22,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 
 ## Type
 
-- Body text is Inter, through `--font-body`. Display text is Source Serif 4, through `--font-display`. The app loads both; see **Fonts** below.
+- Body text is Inter. Display text is Source Serif 4. Both ship with the brand package; see **Fonts** below.
 - Serif is for `h1` and `h2` only, weight 500, slightly tightened. Everything else is sans.
 - Sizes: page title `text-3xl`, section title `text-lg`, body `text-sm`, helper text `text-xs`, table headers 11px uppercase with wide tracking.
 
@@ -83,18 +83,22 @@ one-line status that expands.
 
 ## Fonts
 
-`brand.css` expects two CSS variables, `--font-body` and `--font-display`. In a Next.js
-app, load them in the root layout:
+The brand ships its own fonts. `brand.css` imports Inter and Source Serif 4 as
+variable fonts from the `@fontsource-variable` packages, so they are installed with
+this package and served by the app's own build. No build ever downloads them from
+Google, and nothing is fetched from a font service at runtime.
+
+Apps load nothing: no `next/font/google`, no `--font-body` or `--font-display`
+variables, no `<link>` tags. The root layout keeps only its own classes:
 
 ```tsx
-import { Inter, Source_Serif_4 } from "next/font/google";
-
-const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
-const display = Source_Serif_4({ subsets: ["latin"], variable: "--font-display", display: "swap", weight: ["400", "500", "600"] });
-
-<html lang="en" className={`h-full antialiased ${body.variable} ${display.variable}`}>
+<html lang="en" className="h-full antialiased">
   <body className="min-h-full flex flex-col bg-paper text-zinc-900">
 ```
+
+If an app still has the `next/font/google` imports from before brand 1.2.0, remove
+them and the two `variable` class names; the brand's `--font-sans` and
+`--font-serif` tokens already name the self-hosted faces.
 
 ## Overrides, per app
 

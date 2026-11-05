@@ -24,7 +24,7 @@ In the app's `CLAUDE.md`:
 @node_modules/@lcsc/brand/BRAND.md
 ```
 
-Then load the two fonts as described in `BRAND.md`, under "Fonts".
+The fonts come with the package; the app loads none of its own.
 
 ## Change the brand
 
@@ -35,7 +35,7 @@ server running, stop it, delete its `.next/dev` folder and start it again.
 
 To connect an app for the first time:
 
-> Connect this app to the shared LCSC brand. It lives at github.com/aseidenfeldlcsc/lcsc-brand (npm package `@lcsc/brand`). Read its README and BRAND.md first. Then install it, import `@lcsc/brand/brand.css` right after the Tailwind import in the main stylesheet, and remove this app's own copies of the same colours, fonts and component classes. Make sure the root layout loads Inter as `--font-body` and Source Serif 4 as `--font-display`. Add the line `@node_modules/@lcsc/brand/BRAND.md` to CLAUDE.md, creating the file if needed, with an empty "## Brand exceptions" section under it. Then go through every screen and apply the rules in BRAND.md: Anthropic palette, icons instead of words for simple actions, instructions only in tooltips, one clay primary action per screen. Run the app and check the main pages, then commit and push. If this app does not use Tailwind v4, stop and tell me before changing anything.
+> Connect this app to the shared LCSC brand. It lives at github.com/aseidenfeldlcsc/lcsc-brand (npm package `@lcsc/brand`). Read its README and BRAND.md first. Then install it, import `@lcsc/brand/brand.css` right after the Tailwind import in the main stylesheet, and remove this app's own copies of the same colours, fonts and component classes. Remove any `next/font/google` imports and the `--font-body` / `--font-display` variables from the root layout; the brand ships its own fonts. Add the line `@node_modules/@lcsc/brand/BRAND.md` to CLAUDE.md, creating the file if needed, with an empty "## Brand exceptions" section under it. Then go through every screen and apply the rules in BRAND.md: Anthropic palette, icons instead of words for simple actions, instructions only in tooltips, one clay primary action per screen. Run the app and check the main pages, then commit and push. If this app does not use Tailwind v4, stop and tell me before changing anything.
 
 To pick up a brand change later:
 

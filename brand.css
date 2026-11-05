@@ -5,10 +5,15 @@
  *   @import "tailwindcss";
  *   @import "@lcsc/brand/brand.css";
  *
- * The app must define --font-body and --font-display (see BRAND.md, Fonts).
- * To override a token in one app, redefine it in that app stylesheet after
- * this import; the later definition wins.
+ * The fonts ship with this package (Inter and Source Serif 4, self-hosted
+ * through @fontsource-variable); apps load nothing else. To override a token
+ * in one app, redefine it in that app stylesheet after this import; the later
+ * definition wins.
  */
+
+/* Self-hosted fonts. No build ever fetches them from Google. */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/source-serif-4";
 
 /*
  * One theme for the whole app. The warm "ivory" neutrals replace Tailwind's zinc
@@ -16,8 +21,8 @@
  * single accent, used for the primary action and the active nav item only.
  */
 @theme {
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --color-zinc-50: #f5f4ee;
