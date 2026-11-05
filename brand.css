@@ -191,9 +191,10 @@ input[type="checkbox"]:not(:disabled) {
   font-weight: 500;
   line-height: 1.25;
   white-space: nowrap;
-  opacity: 0;
+  /* Out of layout until shown: an invisible bubble still adds scrollable
+     space inside a scrolling table and draws a stray scrollbar. */
+  display: none;
   pointer-events: none;
-  transition: opacity 0.12s ease;
   left: 50%;
   bottom: calc(100% + 0.4rem);
   transform: translateX(-50%);
@@ -217,6 +218,6 @@ input[type="checkbox"]:not(:disabled) {
 }
 [data-tip]:hover::after,
 [data-tip]:focus-visible::after {
-  opacity: 1;
+  display: block;
 }
 

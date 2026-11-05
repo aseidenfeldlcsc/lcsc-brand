@@ -27,3 +27,7 @@
 ## 1.2.0 (2026-11-05)
 
 - Fonts are self-hosted: `brand.css` imports Inter and Source Serif 4 from `@fontsource-variable`, so no build downloads them from Google. Apps drop `next/font/google` and the `--font-body` / `--font-display` variables.
+
+## 1.2.1 (2026-11-05)
+
+- Tooltip bubbles are kept out of layout until shown (`display: none` instead of `opacity: 0`), so a tooltip inside a scrolling table no longer adds scrollable space and a stray scrollbar.
