@@ -9,3 +9,7 @@
 
 - Page background (`paper`) warmed from #faf9f5 to #f0eee6, Anthropic's ivory.
 - Rule added: the palette follows Anthropic's brand colours.
+
+## 1.0.2 (2026-11-05)
+
+- Page background back to #faf9f5 after trying the darker ivory.
