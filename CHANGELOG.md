@@ -48,3 +48,9 @@
 - New `.row-selected`: the pale fill plus a dark bar on the leading edge, because no pale fill reaches the 3:1 a selected state needs.
 - `zinc-500` (secondary text) darkens from #76746b to #6b6961. The old value was under 4.5:1 on paper (4.45), on `zinc-50` (4.25) and on a fill (4.03); the new one passes on all of them.
 - New section in BRAND.md: Contrast. Known gaps it does not fix yet: white text on the clay primary button is 3.67:1, and control borders (`zinc-300`) are 1.73:1 on white.
+
+## 1.3.3 (2026-11-10)
+
+- `zinc-100`, the fill for every hover, selected row and neutral badge, is now Anthropic's ivory dark, #e8e6dc: the hover colour of the nav buttons on anthropic.com. The pale #f0eee6 of 1.3.2 could not be seen on a hovered button.
+- `zinc-500` (secondary text) goes to #68665f so it stays above 4.5:1 on the darker fill (4.59).
+- Known gap: the clay icon of an active item is 2.93:1 on the fill, just under 3:1.
