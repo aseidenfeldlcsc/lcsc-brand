@@ -36,3 +36,8 @@
 
 - Tooltips float above the page instead of sitting inside their control's container (CSS anchor positioning). A tooltip near the edge of a dialog, card, table or menu no longer adds a sideways scrollbar or gets cut off: it stays inside the window, flips to the other side when there is no room, and wraps at 20rem. Browsers without anchor positioning keep the old behaviour.
 - No change for apps: `data-tip` and `data-tip-pos` work as before.
+
+## 1.3.1 (2026-11-10)
+
+- `zinc-100`, the fill behind every hover, selected row and neutral badge, goes from #ebe9e0 to #ecebe7: the same weight with about half the yellow, so it reads as a soft warm grey on white instead of khaki. The page (`paper`), side panels (`zinc-50`) and borders are unchanged.
+- Rule added: fills over a surface are the soft grey, not a deeper ivory.

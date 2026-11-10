@@ -16,6 +16,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 
 - The palette is Anthropic's, all the way: the lightest ivory for the page (`#faf9f5`), the next ivory for side panels and hover (`#f5f4ee`), white for cards, slate `#141413` for the darkest text, and clay `#d97757` as the accent. When a new colour is needed, take it from Anthropic's brand palette before inventing one.
 - Neutrals are the ivory scale, exposed as `zinc-50` to `zinc-950`. The page background is `paper`; surfaces such as cards, inputs and menus are white.
+- Fills laid over a surface (a hovered control, a selected row, a neutral badge) are `zinc-100`, a soft warm grey (`#ecebe7`), not a deeper ivory. Ivory belongs to the page; in patches on white it reads as yellow.
 - Clay is the one accent. It is used for exactly two things: the single primary action on a screen and the active navigation item. Never for decoration, headings, links or status.
 - Status colors: amber means needs attention, red means a problem or a destructive action, green means done or good, blue is informational and rare. They appear on badges, notices, stat values and small controls, never on large areas.
 - Text is `zinc-900`. Secondary text is `zinc-500` or `zinc-600`. Field labels are `zinc-600`.
