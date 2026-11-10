@@ -41,3 +41,10 @@
 
 - `zinc-100`, the fill behind every hover, selected row and neutral badge, goes from #ebe9e0 to #ecebe7: the same weight with about half the yellow, so it reads as a soft warm grey on white instead of khaki. The page (`paper`), side panels (`zinc-50`) and borders are unchanged.
 - Rule added: fills over a surface are the soft grey, not a deeper ivory.
+
+## 1.3.2 (2026-11-10)
+
+- `zinc-100` again: the grey of 1.3.1 lost the warmth, so the fill is now Anthropic's pale ivory, #f0eee6. Lighter than the original #ebe9e0, still ivory.
+- New `.row-selected`: the pale fill plus a dark bar on the leading edge, because no pale fill reaches the 3:1 a selected state needs.
+- `zinc-500` (secondary text) darkens from #76746b to #6b6961. The old value was under 4.5:1 on paper (4.45), on `zinc-50` (4.25) and on a fill (4.03); the new one passes on all of them.
+- New section in BRAND.md: Contrast. Known gaps it does not fix yet: white text on the clay primary button is 3.67:1, and control borders (`zinc-300`) are 1.73:1 on white.

@@ -1,6 +1,6 @@
 {
   "name": "@lcsc/brand",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "private": true,
   "description": "The shared look, feel and voice for LCSC apps: brand.css for the styles, BRAND.md for the rules.",
   "style": "brand.css",

@@ -16,10 +16,17 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 
 - The palette is Anthropic's, all the way: the lightest ivory for the page (`#faf9f5`), the next ivory for side panels and hover (`#f5f4ee`), white for cards, slate `#141413` for the darkest text, and clay `#d97757` as the accent. When a new colour is needed, take it from Anthropic's brand palette before inventing one.
 - Neutrals are the ivory scale, exposed as `zinc-50` to `zinc-950`. The page background is `paper`; surfaces such as cards, inputs and menus are white.
-- Fills laid over a surface (a hovered control, a selected row, a neutral badge) are `zinc-100`, a soft warm grey (`#ecebe7`), not a deeper ivory. Ivory belongs to the page; in patches on white it reads as yellow.
+- Fills laid over a surface (a hovered control, a selected row, a neutral badge) are `zinc-100`, Anthropic's pale ivory (`#f0eee6`). Nothing deeper: a stronger ivory in patches on white reads as yellow.
 - Clay is the one accent. It is used for exactly two things: the single primary action on a screen and the active navigation item. Never for decoration, headings, links or status.
 - Status colors: amber means needs attention, red means a problem or a destructive action, green means done or good, blue is informational and rare. They appear on badges, notices, stat values and small controls, never on large areas.
 - Text is `zinc-900`. Secondary text is `zinc-500` or `zinc-600`. Field labels are `zinc-600`.
+
+## Contrast
+
+Measured as WCAG contrast ratios, not judged by eye.
+
+- Text is at least 4.5:1 against whatever it sits on, including a hover or selected fill. `zinc-500` is the lightest text colour: it passes on white, paper, `zinc-50` and `zinc-100`. `zinc-400` is for placeholders and disabled text only.
+- A pale fill is about 1.2:1 against its surface, so it never carries a state alone. Hover may be a fill only. Selected, active or on must add a cue of at least 3:1: a dark bar (`.row-selected`), a solid dark pill, a tick, or the clay icon of the active nav item.
 
 ## Type
 
@@ -76,6 +83,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 | `.table` | Quiet data table with uppercase headers. |
 | `.badge` | Pill status marker; add a status color. |
 | `.menu`, `.menu-item` | Floating dropdown. |
+| `.row-selected` | The selected row of a list or table: pale fill plus a dark bar. |
 | `[data-tip]`, `data-tip-pos="top|bottom|left|right"` | Tooltip from an attribute, no library. |
 
 Layout patterns each app builds for itself, in the same spirit: a page header with the
