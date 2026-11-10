@@ -31,3 +31,8 @@
 ## 1.2.1 (2026-11-05)
 
 - Tooltip bubbles are kept out of layout until shown (`display: none` instead of `opacity: 0`), so a tooltip inside a scrolling table no longer adds scrollable space and a stray scrollbar.
+
+## 1.3.0 (2026-11-10)
+
+- Tooltips float above the page instead of sitting inside their control's container (CSS anchor positioning). A tooltip near the edge of a dialog, card, table or menu no longer adds a sideways scrollbar or gets cut off: it stays inside the window, flips to the other side when there is no room, and wraps at 20rem. Browsers without anchor positioning keep the old behaviour.
+- No change for apps: `data-tip` and `data-tip-pos` work as before.

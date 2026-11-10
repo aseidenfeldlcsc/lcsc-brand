@@ -216,6 +216,55 @@ input[type="checkbox"]:not(:disabled) {
   top: 50%;
   transform: translateY(-50%);
 }
+/*
+ * The rules above lay the bubble out inside its control's container, one
+ * unwrapped line centred on the control. Inside anything that scrolls or
+ * clips (a dialog body, a card, a table, a menu) a bubble wider than the
+ * room around its control then adds a sideways scrollbar or gets cut off.
+ *
+ * Where the browser has CSS anchor positioning, the bubble is instead fixed
+ * to the window and anchored to its control, so no container can scroll or
+ * clip it. It is nudged sideways to stay inside the window, flips to the
+ * other side when there is no room on the side asked for, and wraps at
+ * 20rem. Browsers without anchor positioning keep the rules above.
+ */
+@supports (anchor-scope: --tip) and (position-area: top) {
+  [data-tip] {
+    anchor-name: --tip;
+    /* Scoped, so a bubble finds its own control and not the last [data-tip]
+       on the page. */
+    anchor-scope: --tip;
+  }
+  [data-tip]::after,
+  [data-tip][data-tip-pos]::after {
+    position: fixed;
+    position-anchor: --tip;
+    position-area: top;
+    position-try-fallbacks: flip-block;
+    /* Undo the offsets and centring of the rules above. */
+    inset: auto;
+    transform: none;
+    /* The gap to the control, and to the window's edge when nudged. */
+    margin: 0.4rem;
+    width: max-content;
+    max-width: min(20rem, calc(100vw - 0.8rem));
+    white-space: normal;
+    text-align: center;
+    text-wrap: balance;
+  }
+  [data-tip][data-tip-pos="bottom"]::after {
+    position-area: bottom;
+  }
+  [data-tip][data-tip-pos="right"]::after {
+    position-area: right;
+    position-try-fallbacks: flip-inline, top, bottom;
+  }
+  [data-tip][data-tip-pos="left"]::after {
+    position-area: left;
+    position-try-fallbacks: flip-inline, top, bottom;
+  }
+}
+
 [data-tip]:hover::after,
 [data-tip]:focus-visible::after {
   display: block;

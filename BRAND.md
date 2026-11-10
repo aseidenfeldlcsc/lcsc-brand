@@ -45,6 +45,7 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 - A screen shows data and controls, not explanations. No instructional paragraphs. No helper sentences under fields or sections by default.
 - When something needs explaining, it goes in a tooltip: `data-tip` on the control itself, or a small info icon carrying `data-tip`. It appears only on hover, focus or tap.
 - Tooltip text is one short sentence, about twelve words or fewer, with no full stop. "Downloads the table as a spreadsheet", not "Click this button in order to download the table".
+- A tooltip floats above the page: it stays inside the window, flips sides when there is no room and wraps when long. Never reword a tooltip or loosen a container's overflow to make one fit.
 - The only on-screen prose beyond labels: a one-line subtitle under a page title when the page's purpose is not obvious, and a notice when something has gone wrong.
 
 ## Voice
