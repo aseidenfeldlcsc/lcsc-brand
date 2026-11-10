@@ -25,6 +25,16 @@
   --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
+  /*
+   * Type runs one step larger than Tailwind's defaults: body text (text-sm)
+   * is 15px and helper text (text-xs) is 13px, so nothing on a screen is
+   * smaller than 13px apart from table headers.
+   */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.375rem;
+
   --color-zinc-50: #f5f4ee;
   --color-zinc-100: #e8e6dc;
   --color-zinc-200: #dedbd0;
@@ -90,8 +100,17 @@
   h1,
   h2 {
     font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  /* Scrollbars are a thin ivory line, not the system's grey slab. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-zinc-300) transparent;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--color-zinc-900);
   }
   ::selection {
     background: var(--color-clay-100);
@@ -106,7 +125,8 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-full border border-zinc-300 bg-white px-3.5 py-1.5 text-sm font-medium text-zinc-800 transition-colors hover:border-zinc-400 hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-4 py-1.5 text-sm font-medium text-zinc-800 hover:border-zinc-300 hover:bg-zinc-100 hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-50;
+    transition: color 150ms, background-color 150ms, border-color 150ms, box-shadow 150ms;
   }
   .btn-primary {
     @apply border-clay-500 bg-clay-500 text-white hover:border-clay-600 hover:bg-clay-600;
@@ -115,10 +135,10 @@
     @apply border-red-700 bg-red-700 text-white hover:bg-red-600;
   }
   .btn-sm {
-    @apply px-2.5 py-1 text-xs;
+    @apply min-h-8 px-3 py-1 text-xs;
   }
   .btn-quiet {
-    @apply border-transparent bg-transparent text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900;
+    @apply border-transparent bg-transparent text-zinc-600 hover:border-transparent hover:bg-zinc-100 hover:text-zinc-900 hover:shadow-none;
   }
   .iconbtn {
     @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 disabled:cursor-not-allowed disabled:opacity-50;
@@ -130,7 +150,16 @@
     @apply bg-clay-500 text-white hover:bg-clay-600 hover:text-white;
   }
   .input {
-    @apply w-full rounded-lg border border-zinc-300 bg-white px-2.5 py-1.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-900/10;
+    @apply min-h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-900/10;
+  }
+  /* A dropdown draws the brand's own chevron, not the system arrow. */
+  select.input {
+    appearance: none;
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2368665f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.55rem center;
+    background-size: 1rem;
   }
   .label {
     @apply mb-1 block text-xs font-medium text-zinc-600;
@@ -145,7 +174,7 @@
     @apply border-b border-zinc-200 px-3 py-2 text-left text-[11px] font-medium uppercase tracking-wider text-zinc-500;
   }
   .table td {
-    @apply border-b border-zinc-100 px-3 py-2 align-top;
+    @apply border-b border-zinc-100 px-3 py-2.5 align-top;
   }
   .table tbody tr:last-child td {
     @apply border-b-0;
@@ -154,10 +183,37 @@
     @apply inline-block whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium;
   }
   .menu {
-    @apply absolute right-0 z-30 mt-1 min-w-48 overflow-hidden rounded-xl border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-900/5;
+    @apply absolute right-0 z-30 mt-1 min-w-48 overflow-hidden rounded-xl border border-zinc-200 bg-white p-1 shadow-lg shadow-zinc-900/5;
   }
   .menu-item {
-    @apply block w-full px-3.5 py-2 text-left text-sm text-zinc-800 hover:bg-zinc-100 disabled:opacity-50;
+    @apply flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-zinc-800 hover:bg-zinc-100 disabled:opacity-50;
+  }
+  /*
+   * A pill that can be on or off: a filter, a tag, a tab among a few. On is
+   * the ivory fill with a slate outline (the outline is the 3:1 cue the
+   * fill cannot give), never a solid dark pill.
+   */
+  .chip {
+    @apply inline-flex min-h-8 items-center gap-1.5 whitespace-nowrap rounded-full border border-zinc-200 bg-white px-3.5 py-1 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-100;
+    transition: color 150ms, background-color 150ms, border-color 150ms;
+  }
+  .chip-on {
+    @apply border-zinc-800 bg-zinc-100 text-zinc-900 hover:border-zinc-800;
+  }
+  /*
+   * A segmented control: a few choices where exactly one is on (this week
+   * or next, one day of the week). The track is ivory; the choice that is
+   * on is a white pill with a slate outline.
+   */
+  .seg {
+    @apply inline-flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-zinc-100 p-1;
+  }
+  .seg-item {
+    @apply min-h-8 shrink-0 whitespace-nowrap rounded-full border border-transparent px-3.5 py-1 text-sm text-zinc-600 hover:text-zinc-900 disabled:text-zinc-400;
+    transition: color 150ms, background-color 150ms, border-color 150ms;
+  }
+  .seg-on {
+    @apply border-zinc-800 bg-white font-medium text-zinc-900;
   }
   /*
    * The selected row of a list or table. The fill is only about 1.25:1 against

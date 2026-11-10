@@ -26,19 +26,30 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 Measured as WCAG contrast ratios, not judged by eye.
 
 - Text is at least 4.5:1 against whatever it sits on, including a hover or selected fill. `zinc-500` is the lightest text colour: it passes on white, paper, `zinc-50` and `zinc-100` (4.59 on the fill). `zinc-400` is for placeholders and disabled text only.
-- The fill is about 1.25:1 against white, so it never carries a state alone. Hover may be a fill only. Selected, active or on must add a cue of at least 3:1: a dark bar (`.row-selected`), a solid dark pill, a tick, or the clay icon of the active nav item.
+- The fill is about 1.25:1 against white, so it never carries a state alone. Hover may be a fill only. Selected, active or on must add a cue of at least 3:1: a dark bar (`.row-selected`), a slate outline (`.chip-on`, `.seg-on`), a tick, or the clay icon of the active nav item.
+- Solid dark is heavy and is kept for one thing per screen at most: the item that is the viewer's own (their booking on a calendar), a count badge, a tooltip. It is not the way to show that a filter, tab or toggle is on.
 
 ## Type
 
 - Body text is Inter. Display text is Source Serif 4. Both ship with the brand package; see **Fonts** below.
-- Serif is for `h1` and `h2` only, weight 500, slightly tightened. Everything else is sans.
-- Sizes: page title `text-3xl`, section title `text-lg`, body `text-sm`, helper text `text-xs`, table headers 11px uppercase with wide tracking.
+- Serif is for `h1` and `h2` only, weight 400, slightly tightened (-0.015em), as on anthropic.com. Everything else is sans.
+- Sizes: page title `text-3xl`, section title `text-lg`, body `text-sm` (15px), helper text `text-xs` (13px), table headers 11px uppercase with wide tracking. `brand.css` sets `text-sm` and `text-xs` one step above Tailwind's defaults.
+- 13px is the floor. Nothing a person has to read is smaller, apart from table headers and the labels inside a dense chart or calendar block.
+
+## Space
+
+- A screen breathes. When it feels cramped, the fix is more room or fewer things, never smaller type.
+- Controls are at least 32px tall (`.btn-sm`, `.chip`, `.iconbtn`) and 36px by default (`.btn`, `.input`). On a phone, anything tapped often is 40px or more.
+- Sections are 24px apart or more; a page title has 20px under it; cards pad 16px, dialogs 24px.
+- One surface, not boxes in boxes: a card does not sit inside a card, and a filter row sits on the page, not in its own bordered box.
 
 ## Shape
 
 - Buttons and badges are pills (`rounded-full`). Cards, menus and notices are `rounded-xl`; inputs are `rounded-lg`.
-- Borders are one pixel: `zinc-200` on cards and tables, `zinc-300` on controls.
-- Shadows only on floating menus, and faint.
+- Borders are one pixel: `zinc-200` on cards, tables, buttons and chips; `zinc-300` on inputs.
+- Fewer lines. The top bar is the page colour with no line under it; rows are divided by `zinc-100`, not boxed.
+- Shadows only on floating menus and a hovered button, and faint.
+- Controls are drawn by the brand, not the system: dropdowns show the brand chevron, checkboxes are slate, scrollbars are a thin ivory line. `brand.css` does all three.
 
 ## Icons, not words
 
@@ -67,8 +78,8 @@ Measured as WCAG contrast ratios, not judged by eye.
 
 - Everything clickable shows a hand cursor. `brand.css` does this.
 - Destructive actions confirm first, with one short line saying what will happen.
-- Every button, link and icon control has a visible hover state, always. Outlined buttons darken their border and fill one step (white to `zinc-100`); primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
-- Hover feedback is a color change of about 120ms. No other motion, apart from a disclosure chevron rotating.
+- Every button, link and icon control has a visible hover state, always. Plain buttons darken their border and fill one step (`zinc-50` to `zinc-100`) and gain a faint shadow; primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
+- Hover feedback is a colour change, with a faint shadow on buttons, over about 150ms. No other motion, apart from a disclosure chevron rotating.
 - Detail hides behind a disclosure. A screen shows the one-line status, not the whole panel.
 - One way to do a thing. If a row's name is already the link to its page, the row gets no second "open" control, not even an arrow. Icons in a row are for actions the name cannot carry: edit, delete, download.
 
@@ -76,17 +87,20 @@ Measured as WCAG contrast ratios, not judged by eye.
 
 | Class | Use |
 |---|---|
-| `.btn`, `.btn-primary`, `.btn-danger`, `.btn-quiet`, `.btn-sm` | Pill buttons. One `.btn-primary` per screen. |
+| `.btn`, `.btn-primary`, `.btn-danger`, `.btn-quiet`, `.btn-sm` | Pill buttons: an ivory fill with an ivory border. One `.btn-primary` per screen. |
 | `.iconbtn`, `.iconbtn-danger`, `.iconbtn-primary` | Round icon-only buttons. |
 | `.input`, `.label` | Form controls and their small labels. |
 | `.card` | A white, bordered, rounded surface. |
 | `.table` | Quiet data table with uppercase headers. |
 | `.badge` | Pill status marker; add a status color. |
+| `.chip`, `.chip-on` | A pill that can be on or off: a filter or a tag. On is the ivory fill with a slate outline. |
+| `.seg`, `.seg-item`, `.seg-on` | Segmented control: an ivory track of a few choices, the one that is on a white pill with a slate outline. |
 | `.menu`, `.menu-item` | Floating dropdown. |
 | `.row-selected` | The selected row of a list or table: pale fill plus a dark bar. |
 | `[data-tip]`, `data-tip-pos="top|bottom|left|right"` | Tooltip from an attribute, no library. |
 
-Layout patterns each app builds for itself, in the same spirit: a page header with the
+Layout patterns each app builds for itself, in the same spirit: a top bar in the page
+colour with no line under it, its active item an ivory pill with a clay icon; a page header with the
 title, an optional one-line subtitle, a back link and the actions on the right; sections
 with a serif heading; notices in the four tones; stat cards; and disclosures, a quiet
 one-line status that expands.

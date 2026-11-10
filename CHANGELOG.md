@@ -54,3 +54,16 @@
 - `zinc-100`, the fill for every hover, selected row and neutral badge, is now Anthropic's ivory dark, #e8e6dc: the hover colour of the nav buttons on anthropic.com. The pale #f0eee6 of 1.3.2 could not be seen on a hovered button.
 - `zinc-500` (secondary text) goes to #68665f so it stays above 4.5:1 on the darker fill (4.59).
 - Known gap: the clay icon of an active item is 2.93:1 on the fill, just under 3:1.
+
+## 1.4.0 (2026-11-10)
+
+Closer to anthropic.com, after measuring both: the colours already matched; the gap was size, space and weight.
+
+- Type is one step larger: `text-sm` is 15px and `text-xs` is 13px (set as theme tokens, so every app picks it up with no class changes). 13px is now the floor.
+- Headings: serif weight 400 with -0.015em tracking, was 500.
+- Buttons: an ivory fill with an ivory border and a faint shadow on hover (was white with a grey border); 36px tall, small ones 32px. Inputs are 36px.
+- New `.chip` / `.chip-on` and `.seg` / `.seg-item` / `.seg-on`. On is the ivory fill (or a white pill on an ivory track) with a slate outline. Solid dark pills are no longer how a filter, tab or toggle shows it is on.
+- Dropdowns draw the brand chevron, checkboxes are slate, scrollbars are a thin ivory line.
+- `.menu-item` is a rounded row with room for an icon; `.menu` pads 4px all round.
+- BRAND.md: new **Space** section; Type, Shape, Contrast and Interaction updated to match.
+- For apps: replace hand-rolled "selected" pills (`bg-zinc-900 text-white`) with `.chip-on` or `.seg-on`; a `select` with tight horizontal padding needs room on the right for the chevron; a top bar loses its border and takes the page colour.
