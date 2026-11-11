@@ -72,3 +72,10 @@ Closer to anthropic.com, after measuring both: the colours already matched; the 
 
 - The open list of a dropdown is drawn as a brand menu (white rounded panel, ivory hover, a tick on the current choice) instead of the system's blue list, in browsers that support `appearance: base-select`. Other browsers keep the system picker.
 - Apps whose dialogs close on Escape must skip it while `select:open` matches, or Escape closes the list and the dialog together.
+
+## 1.6.0 (2026-11-11)
+
+- Rule added: no box around a list. A feed or list of rows sits on the page between rules, not in a card; a card is for a surface that has to be set apart.
+- New `.rows`: a rule above, below and between the rows of such a list. Nothing existing changes.
+- Rows on the page are divided by `zinc-200`; `zinc-100` stays for rows inside a white card or table.
+- Rule added: a "Read more" stands apart from the text it follows.

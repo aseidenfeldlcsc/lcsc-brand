@@ -224,6 +224,14 @@
     background: var(--color-zinc-100);
     box-shadow: inset 3px 0 0 var(--color-zinc-900);
   }
+  /*
+   * A list or feed that sits on the page with no box around it: a rule
+   * above, below and between its rows (BRAND.md, "No box around a list").
+   * The rows are its direct children and bring their own padding.
+   */
+  .rows {
+    @apply divide-y divide-zinc-200 border-y border-zinc-200;
+  }
 }
 
 /* Everything clickable shows a hand, not an arrow. */

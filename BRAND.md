@@ -42,12 +42,13 @@ Measured as WCAG contrast ratios, not judged by eye.
 - Controls are at least 32px tall (`.btn-sm`, `.chip`, `.iconbtn`) and 36px by default (`.btn`, `.input`). On a phone, anything tapped often is 40px or more.
 - Sections are 24px apart or more; a page title has 20px under it; cards pad 16px, dialogs 24px.
 - One surface, not boxes in boxes: a card does not sit inside a card, and a filter row sits on the page, not in its own bordered box.
+- No box around a list. A feed or list of rows sits on the page between rules (`.rows`), as on anthropic.com, with 20px or more above and below each row. A card is for a surface that has to be set apart: a form, a data table, a panel beside other panels, a dialog. When unsure, leave the box off.
 
 ## Shape
 
 - Buttons and badges are pills (`rounded-full`). Cards, menus and notices are `rounded-xl`; inputs are `rounded-lg`.
 - Borders are one pixel: `zinc-200` on cards, tables, buttons and chips; `zinc-300` on inputs.
-- Fewer lines. The top bar is the page colour with no line under it; rows are divided by `zinc-100`, not boxed.
+- Fewer lines. The top bar is the page colour with no line under it; rows are divided, not boxed: by `zinc-100` inside a white card or table, by `zinc-200` on the page, where the paler line cannot be seen.
 - Shadows only on floating menus and a hovered button, and faint.
 - Controls are drawn by the brand, not the system: dropdowns show the brand chevron and open as a brand menu (ivory hover, a tick on the current choice, never the system's blue list, where the browser allows it), checkboxes are slate, scrollbars are a thin ivory line. `brand.css` does all of it.
 
@@ -81,6 +82,7 @@ Measured as WCAG contrast ratios, not judged by eye.
 - Every button, link and icon control has a visible hover state, always. Plain buttons darken their border and fill one step (`zinc-50` to `zinc-100`) and gain a faint shadow; primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
 - Hover feedback is a colour change, with a faint shadow on buttons, over about 150ms. No other motion, apart from a disclosure chevron rotating.
 - Detail hides behind a disclosure. A screen shows the one-line status, not the whole panel.
+- A "Read more" under folded text stands apart from the text: its own line with room above, `zinc-900` and semibold, with the disclosure chevron. It never reads as the last line of the paragraph.
 - One way to do a thing. If a row's name is already the link to its page, the row gets no second "open" control, not even an arrow. Icons in a row are for actions the name cannot carry: edit, delete, download.
 
 ## Components in brand.css
@@ -97,6 +99,7 @@ Measured as WCAG contrast ratios, not judged by eye.
 | `.seg`, `.seg-item`, `.seg-on` | Segmented control: an ivory track of a few choices, the one that is on a white pill with a slate outline. |
 | `.menu`, `.menu-item` | Floating dropdown. |
 | `.row-selected` | The selected row of a list or table: pale fill plus a dark bar. |
+| `.rows` | A list or feed with no box: a rule above, below and between its rows. |
 | `[data-tip]`, `data-tip-pos="top|bottom|left|right"` | Tooltip from an attribute, no library. |
 
 Layout patterns each app builds for itself, in the same spirit: a top bar in the page
