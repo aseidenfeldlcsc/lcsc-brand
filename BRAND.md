@@ -9,15 +9,22 @@ Those exceptions win, for that app only. Everything not mentioned there follows 
 
 ## Feel
 
-Warm, quiet, uncluttered. A paper background, ivory neutrals and a single clay accent.
-A screen should read like a well-set page, not a dashboard. When in doubt, remove something.
+Warm, quiet, uncluttered, and modelled on anthropic.com: a paper background, ivory
+neutrals, bold plain headings, slate for what matters most and a little clay. A screen
+should read like a well-set page, not a dashboard. When in doubt, remove something.
+
+The values in `brand.css` were read off the live anthropic.com (its news and home
+pages), not judged by eye. When a new pattern is needed, look at how that site does it,
+measure it in the browser, and follow it. Its typeface is its own and is not copied.
 
 ## Color
 
 - The palette is Anthropic's, all the way: the lightest ivory for the page (`#faf9f5`), the next ivory for side panels (`#f5f4ee`), ivory dark for hover and selected fills (`#e8e6dc`), white for cards, slate `#141413` for the darkest text, and clay `#d97757` as the accent. When a new colour is needed, take it from Anthropic's brand palette before inventing one.
 - Neutrals are the ivory scale, exposed as `zinc-50` to `zinc-950`. The page background is `paper`; surfaces such as cards, inputs and menus are white.
 - Fills laid over a surface (a hovered control, a selected row, a neutral badge) are `zinc-100`, Anthropic's ivory dark (`#e8e6dc`), the hover colour of the nav buttons on anthropic.com. One colour for all of them; anything paler cannot be seen on a hovered button.
-- Clay is the one accent. It is used for exactly two things: the single primary action on a screen and the active navigation item. Never for decoration, headings, links or status.
+- Slate is the colour of emphasis: the single primary action on a screen (`zinc-800`, darker on hover), whatever is switched on (`zinc-950`), and a dark band.
+- Clay is the one accent and is rare: the active navigation item and an app's own mark. Never for buttons, decoration, headings, links or status.
+- A dark band (`.band`: `zinc-950` with ivory words) sets off the one featured thing on a page and makes the footer. One featured band per screen at most. Buttons inside it are ivory.
 - Status colors: amber means needs attention, red means a problem or a destructive action, green means done or good, blue is informational and rare. They appear on badges, notices, stat values and small controls, never on large areas.
 - Text is `zinc-900`. Secondary text is `zinc-500` or `zinc-600`. Field labels are `zinc-600`.
 
@@ -26,13 +33,15 @@ A screen should read like a well-set page, not a dashboard. When in doubt, remov
 Measured as WCAG contrast ratios, not judged by eye.
 
 - Text is at least 4.5:1 against whatever it sits on, including a hover or selected fill. `zinc-500` is the lightest text colour: it passes on white, paper, `zinc-50` and `zinc-100` (4.59 on the fill). `zinc-400` is for placeholders and disabled text only.
-- The fill is about 1.25:1 against white, so it never carries a state alone. Hover may be a fill only. Selected, active or on must add a cue of at least 3:1: a dark bar (`.row-selected`), a slate outline (`.chip-on`, `.seg-on`), a tick, or the clay icon of the active nav item.
-- Solid dark is heavy and is kept for one thing per screen at most: the item that is the viewer's own (their booking on a calendar), a count badge, a tooltip. It is not the way to show that a filter, tab or toggle is on.
+- The fill is about 1.25:1 against white, so it never carries a state alone. Hover may be a fill only. Selected, active or on must add a cue of at least 3:1: a solid slate fill (`.chip-on`, `.seg-on`), a dark bar (`.row-selected`), a dark underline on a tab, a tick, or the clay icon of the active nav item.
+- Solid slate means "on", "main action" or "featured", and nothing else: a chip or segment that is on, the primary button, the viewer's own item on a calendar, a count badge, a tooltip, a band. On a dark band, text is ivory (`paper`, `zinc-100`) and secondary text is `zinc-300`.
 
 ## Type
 
-- Body text is Inter. Display text is Source Serif 4. Both ship with the brand package; see **Fonts** below.
-- Serif is for `h1` and `h2` only, weight 400, slightly tightened (-0.015em), as on anthropic.com. Everything else is sans.
+- Everything is Inter, headings included. It ships with the brand package; see **Fonts** below.
+- Headings (`h1`, `h2`, and the title of a post or card) are bold, weight 700, tightened (-0.02em), with a line height near 1.2, as on anthropic.com. Buttons, chips and body text are regular weight; medium is for a label or a name inside a row.
+- Source Serif 4 is kept for an app's wordmark beside its mark, and nothing else.
+- 13px text (`text-xs`) is tracked +0.01em; `brand.css` does this.
 - Sizes: page title `text-3xl`, section title `text-lg`, body `text-sm` (15px), helper text `text-xs` (13px), table headers 11px uppercase with wide tracking. `brand.css` sets `text-sm` and `text-xs` one step above Tailwind's defaults.
 - 13px is the floor. Nothing a person has to read is smaller, apart from table headers and the labels inside a dense chart or calendar block.
 
@@ -46,10 +55,10 @@ Measured as WCAG contrast ratios, not judged by eye.
 
 ## Shape
 
-- Buttons and badges are pills (`rounded-full`). Cards, menus and notices are `rounded-xl`; inputs are `rounded-lg`.
+- Buttons have 10px corners; small buttons and icon buttons 8px. Chips and badges are pills (`rounded-full`). A segmented bar has 10px corners. Cards, menus and notices are `rounded-xl`; a band is `rounded-2xl`; inputs are `rounded-lg`.
 - Borders are one pixel: `zinc-200` on cards, tables, buttons and chips; `zinc-300` on inputs.
 - Fewer lines. The top bar is the page colour with no line under it; rows are divided, not boxed: by `zinc-100` inside a white card or table, by `zinc-200` on the page, where the paler line cannot be seen.
-- Shadows only on floating menus and a hovered button, and faint.
+- Shadows only on floating menus, and faint.
 - Controls are drawn by the brand, not the system: dropdowns show the brand chevron and open as a brand menu (ivory hover, a tick on the current choice, never the system's blue list, where the browser allows it), checkboxes are slate, scrollbars are a thin ivory line. `brand.css` does all of it.
 
 ## Icons, not words
@@ -79,8 +88,8 @@ Measured as WCAG contrast ratios, not judged by eye.
 
 - Everything clickable shows a hand cursor. `brand.css` does this.
 - Destructive actions confirm first, with one short line saying what will happen.
-- Every button, link and icon control has a visible hover state, always. Plain buttons darken their border and fill one step (`zinc-50` to `zinc-100`) and gain a faint shadow; primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
-- Hover feedback is a colour change, with a faint shadow on buttons, over about 150ms. No other motion, apart from a disclosure chevron rotating.
+- Every button, link and icon control has a visible hover state, always. Plain buttons darken their border and fill one step (`zinc-100` to `zinc-200`); primary and danger buttons go one shade darker; quiet controls gain a `zinc-100` background. If a control does nothing on hover, it is a bug.
+- Hover feedback is a colour change over about 150ms. No other motion, apart from a disclosure chevron rotating.
 - Detail hides behind a disclosure. A screen shows the one-line status, not the whole panel.
 - A "Read more" under folded text stands apart from the text: its own line with room above, `zinc-900` and semibold, with the disclosure chevron. It never reads as the last line of the paragraph.
 - One way to do a thing. If a row's name is already the link to its page, the row gets no second "open" control, not even an arrow. Icons in a row are for actions the name cannot carry: edit, delete, download.
@@ -89,14 +98,15 @@ Measured as WCAG contrast ratios, not judged by eye.
 
 | Class | Use |
 |---|---|
-| `.btn`, `.btn-primary`, `.btn-danger`, `.btn-quiet`, `.btn-sm` | Pill buttons: an ivory fill with an ivory border. One `.btn-primary` per screen. |
-| `.iconbtn`, `.iconbtn-danger`, `.iconbtn-primary` | Round icon-only buttons. |
+| `.btn`, `.btn-primary`, `.btn-danger`, `.btn-quiet`, `.btn-sm` | Buttons with 10px corners: ivory dark with a hairline border; the primary one slate with ivory words. One `.btn-primary` per screen. |
+| `.iconbtn`, `.iconbtn-danger`, `.iconbtn-primary` | Icon-only buttons with 8px corners. |
 | `.input`, `.label` | Form controls and their small labels. |
 | `.card` | A white, bordered, rounded surface. |
 | `.table` | Quiet data table with uppercase headers. |
 | `.badge` | Pill status marker; add a status color. |
-| `.chip`, `.chip-on` | A pill that can be on or off: a filter or a tag. On is the ivory fill with a slate outline. |
-| `.seg`, `.seg-item`, `.seg-on` | Segmented control: an ivory track of a few choices, the one that is on a white pill with a slate outline. |
+| `.chip`, `.chip-on` | A pill that can be on or off: a tag, or a filter where several can be picked. On is a solid slate pill. |
+| `.seg`, `.seg-item`, `.seg-on` | Segmented control, for one choice of a few: a joined ivory bar, the choice that is on a slate block. |
+| `.band` | A dark surface with ivory words: the featured thing on a page, the footer. |
 | `.menu`, `.menu-item` | Floating dropdown. |
 | `.row-selected` | The selected row of a list or table: pale fill plus a dark bar. |
 | `.rows` | A list or feed with no box: a rule above, below and between its rows. |
@@ -105,13 +115,17 @@ Measured as WCAG contrast ratios, not judged by eye.
 Layout patterns each app builds for itself, in the same spirit: a top bar in the page
 colour with no line under it, its active item an ivory pill with a clay icon; a page header with the
 title, an optional one-line subtitle, a back link and the actions on the right; sections
-with a serif heading; notices in the four tones; stat cards; and disclosures, a quiet
-one-line status that expands.
+with a bold heading; the sections of one page as underlined tabs on a rule (the open
+one `zinc-900`, semibold, with a 2px dark underline), kept apart from a `.seg` filter
+under them; the next or featured item as a `.band` above plain rows; a dark footer
+(`.band`) with the app's mark; on a phone, a bottom tab bar in ivory dark (`zinc-100`)
+with near-black icons, the open one clay, and no line above it; notices in the four
+tones; stat cards; and disclosures, a quiet one-line status that expands.
 
 ## Fonts
 
-The brand ships its own fonts. `brand.css` imports Inter and Source Serif 4 as
-variable fonts from the `@fontsource-variable` packages, so they are installed with
+The brand ships its own fonts. `brand.css` imports Inter (everything) and Source Serif 4
+(wordmarks only) as variable fonts from the `@fontsource-variable` packages, so they are installed with
 this package and served by the app's own build. No build ever downloads them from
 Google, and nothing is fetched from a font service at runtime.
 

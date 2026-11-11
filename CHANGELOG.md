@@ -79,3 +79,16 @@ Closer to anthropic.com, after measuring both: the colours already matched; the 
 - New `.rows`: a rule above, below and between the rows of such a list. Nothing existing changes.
 - Rows on the page are divided by `zinc-200`; `zinc-100` stays for rows inside a white card or table.
 - Rule added: a "Read more" stands apart from the text it follows.
+
+## 2.0.0 (2026-11-11)
+
+The look now follows anthropic.com, with values measured off the live site. Tried in Roomer first and approved there.
+
+- Headings (`h1`, `h2`) are bold Inter (700, -0.02em, line height 1.2), no longer serif. Source Serif 4 stays for wordmarks only.
+- 13px text is tracked +0.01em.
+- Buttons: 10px corners (8px when small), regular weight, ivory dark with a hairline border, no hover shadow. The primary button and `.iconbtn-primary` are slate, not clay. Icon buttons have 8px corners.
+- `.chip`: a small ivory pill, regular weight; `.chip-on` is a solid slate pill (was an ivory fill with a slate outline).
+- `.seg`: one joined ivory bar with 10px corners and hairlines between choices; `.seg-on` is a slate block (was a white pill on a padded track).
+- New `.band`: a dark surface with ivory words, for a featured item and the footer. Buttons inside it are ivory.
+- BRAND.md: clay is now only the active nav item and an app's mark; slate is the colour of emphasis; new layout patterns (underlined section tabs, a featured band, a dark footer, an ivory phone tab bar).
+- For apps: anything that relied on clay for the main action is now slate; a `.seg` no longer has inner padding or gaps; remove serif classes from headings; check dialogs and forms after updating.
