@@ -67,3 +67,8 @@ Closer to anthropic.com, after measuring both: the colours already matched; the 
 - `.menu-item` is a rounded row with room for an icon; `.menu` pads 4px all round.
 - BRAND.md: new **Space** section; Type, Shape, Contrast and Interaction updated to match.
 - For apps: replace hand-rolled "selected" pills (`bg-zinc-900 text-white`) with `.chip-on` or `.seg-on`; a `select` with tight horizontal padding needs room on the right for the chevron; a top bar loses its border and takes the page colour.
+
+## 1.5.0 (2026-11-11)
+
+- The open list of a dropdown is drawn as a brand menu (white rounded panel, ivory hover, a tick on the current choice) instead of the system's blue list, in browsers that support `appearance: base-select`. Other browsers keep the system picker.
+- Apps whose dialogs close on Escape must skip it while `select:open` matches, or Escape closes the list and the dialog together.

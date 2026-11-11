@@ -49,7 +49,7 @@ Measured as WCAG contrast ratios, not judged by eye.
 - Borders are one pixel: `zinc-200` on cards, tables, buttons and chips; `zinc-300` on inputs.
 - Fewer lines. The top bar is the page colour with no line under it; rows are divided by `zinc-100`, not boxed.
 - Shadows only on floating menus and a hovered button, and faint.
-- Controls are drawn by the brand, not the system: dropdowns show the brand chevron, checkboxes are slate, scrollbars are a thin ivory line. `brand.css` does all three.
+- Controls are drawn by the brand, not the system: dropdowns show the brand chevron and open as a brand menu (ivory hover, a tick on the current choice, never the system's blue list, where the browser allows it), checkboxes are slate, scrollbars are a thin ivory line. `brand.css` does all of it.
 
 ## Icons, not words
 

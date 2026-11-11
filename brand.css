@@ -335,3 +335,76 @@ input[type="checkbox"]:not(:disabled) {
   display: block;
 }
 
+/*
+ * The OPEN list of a dropdown. A system list is a white box with a blue
+ * highlight that no page colour reaches. Where the browser can draw the list
+ * itself (appearance: base-select, Chromium 135+), it is drawn as a brand
+ * menu: a white rounded panel, an ivory hover, a tick on the current choice.
+ * Elsewhere, and on iPhones, the system's own picker stays.
+ *
+ * Unlayered on purpose, so it wins over `appearance: none` on select.input.
+ * An app whose dialogs close on Escape must ignore Escape while a list is
+ * open (`document.querySelector("select:open")`): the key now reaches the
+ * page, where a system list used to keep it.
+ */
+@supports (appearance: base-select) {
+  select,
+  select::picker(select) {
+    appearance: base-select;
+  }
+  /* select.input already draws the brand chevron as its background. */
+  select.input::picker-icon {
+    display: none;
+  }
+  select::picker(select) {
+    margin-block: 0.25rem;
+    max-block-size: min(22rem, 70dvh);
+    padding: 0.25rem;
+    border: 1px solid var(--color-zinc-200);
+    border-radius: 0.75rem;
+    background: white;
+    color: var(--color-zinc-800);
+    box-shadow:
+      0 10px 15px -3px rgb(20 20 19 / 0.06),
+      0 4px 6px -4px rgb(20 20 19 / 0.06);
+    scrollbar-width: thin;
+  }
+  select option {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: var(--text-sm);
+    line-height: 1.35;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  select option:hover,
+  select option:focus-visible {
+    background: var(--color-zinc-100);
+    outline: none;
+  }
+  select option:checked {
+    font-weight: 500;
+    color: var(--color-zinc-900);
+  }
+  /* The tick that marks the current choice goes after the words. */
+  select option::checkmark {
+    order: 1;
+    margin-left: auto;
+    padding-left: 0.75rem;
+  }
+  select optgroup {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-zinc-500);
+  }
+  select optgroup option {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--color-zinc-800);
+  }
+}
